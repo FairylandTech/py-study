@@ -1,0 +1,18 @@
+### IDEA ###
+.idea
+.vscode
+.vs
+
+### Python ###
+__pycache__
+
+### Jupyter Notebook ###
+.ipynb_checkpoints
+
+### Node.js ###
+node_modules
+
+### Others ###
+log[s]
+temp/*
+!temp/*.md
