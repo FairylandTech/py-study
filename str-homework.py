@@ -323,3 +323,18 @@ print(ccc[::-1])
 # # list_name.extend('季朝阳') # 打散数据添加到最后一位
 # # list_name.extend(('季朝阳', '花花'))  # 打散数据添加到最后一位
 # print(list_name)
+a = "  aa aa abcd我的 a   a   a     "
+print(a.rstrip())  # 去掉右边的空格
+print(a.lstrip())  # 去掉左边的空格
+print(a.strip())  # 去掉两边的空格
+print(a.replace(" ", ""))  # 替换空格
+print(2, max(a))
+print("".join(i for i in a if i != " "))
+a1 = ""
+for i in a.split(" "):
+    if i != " ":
+        a1 += i
+
+print(a1)
+l = ['a','s','d','f']
+print(l.pop(d))
