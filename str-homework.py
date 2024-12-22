@@ -46,7 +46,6 @@ aaa = "".join((secrets.choice(string.ascii_letters) for _ in range(10)))
 aaa2 = "".join((secrets.choice(string.ascii_letters + string.digits) for _ in range(10)))
 print(aaa, len(aaa))
 print(aaa2, len(aaa2))
-
 letters = string.ascii_letters
 aaa1 = ""
 for _ in range(10):

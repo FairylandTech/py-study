@@ -40,8 +40,8 @@ int3 = -1
 # print(int3)
 
 # 运算 + - * / ** %(取模)
-print(int(10 / 3))
-# print(divmod(10, 3))
+# print(int(10 / 3))
+print(divmod(10, 2))
 
 list1 = list()  # 默认值: []
 tuple1 = tuple()  # 默认值: ()
@@ -107,26 +107,26 @@ list_test[len(list_test) - 1] = 111  # 时间复杂度O(1)
 
 # 4. 查找元素
 # index 参数是元素, 返回索引
-print(list_test.index("0"))
+#print(list_test.index("0"))
 # count 参数是元素, 返回元素出现的次数
-print(list_test.count(1))
+#print(list_test.count(1))
 # 切片
-print(list_test[0:5])
-print(list_test[0:6:2])
-print(list_test[:6:2])
-print(list_test[20::5])
-print(list_test[20::-1])
-print(list_test[2::-3])
+# print(list_test[0:5])
+# print(list_test[0:6:2])
+# print(list_test[:6:2])
+# print(list_test[20::5])
+# print(list_test[20::-1])
+# print(list_test[2::-3])
 
-print(list_test)
+# print(list_test)
 
 # 元组
 tuple_test = (1, 2, 3, 4)
-print(tuple_test[0])
+#print(tuple_test[0])
 
 ccc = [0, 1]
-print(ccc[0])
-print(ccc.__getitem__(0))
+#print(ccc[0])
+#print(ccc.__getitem__(0))
 
 # 字典 HashMap 哈希表, key-value
 from collections import OrderedDict
@@ -153,19 +153,19 @@ dict_test.update({key4: 1234})
 # del dict_test
 del dict_test["key1"]  # 删除
 values = dict_test.pop("key2")  # 删除 参数 key的名称, 返回值是已经删除的key对应的value
-print(values)
+#print(values)
 # 查询
-print(dict_test["key3.1"])
-print(dict_test.get("key3.1"))
+#print(dict_test["key3.1"])
+#print(dict_test.get("key3.1"))
 
 # 查询所有的key
-print(dict_test.keys())  # 返回一个可迭代的对象
+#print(dict_test.keys())  # 返回一个可迭代的对象
 # 查询所有的values
-print(dict_test.values())  # 返回一个可迭代的对象
+#print(dict_test.values())  # 返回一个可迭代的对象
 # 查询所有的key-value
-print(dict_test.items())  # 返回一个可迭代的对象, 但是需要解包(在for循环中使用)
-for key, value in dict_test.items():
-    print(key, value)
+#print(dict_test.items())  # 返回一个可迭代的对象, 但是需要解包(在for循环中使用)
+# for key, value in dict_test.items():
+#     print(key, value)
 
 
-print(dict_test)
+#print(dict_test)
