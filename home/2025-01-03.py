@@ -22,9 +22,9 @@ for number in range(0,5):
 text = "Python is fun"
 print(repr(text.upper()))
 '''8  简单函数：定义一个函数greet()，该函数打印"Welcome to Python!"。'''
-def greet()
+def greet():
     print("Welcome to Python!")
-greet()
+# greet()
 '''9  输入输出：使用input()函数获取用户的年龄，并打印"你今年X岁"，其中X是用户输入的年龄。'''
 age = input('你的年龄是：')
 print(f"你今年{age}岁")
@@ -116,7 +116,8 @@ def calculate(a, b):
     ji = a*b
     shang = a/b
     fan_hui = f'和为{num}差为{cha}积为{ji}商为{shang}'
-    return
+    return num,cha,ji,shang,
+calculate(5,6)
 '''5  匿名函数：使用lambda函数，实现两个数相加，并打印结果。'''
 
 '''6  集合操作：创建两个集合，求它们的并集和交集。'''
@@ -184,9 +185,9 @@ print(f'英文字母有{zimu}个数，数字有{number}个，空格有{kong_ge}�
 '''2  冒泡排序：实现冒泡排序算法，对列表[5, 2, 9, 1, 5, 6]进行排序。'''
 num_list = [5, 2, 9, 1, 5, 6]
 mao_list = []
-for number in num_list:
-    suo_yin = 
-    for hou_number in num_list:
+# for number in num_list:
+#     suo_yin =
+#     for hou_number in num_list:
 
 '''3  读取CSV文件：使用csv模块读取一个CSV文件，并打印每一行内容（假设文件存在）。'''
 
