@@ -423,7 +423,6 @@ def test32():
 
 
 def test33():
-
     with open("../data/data.csv", "r") as stream:
         reader = csv.reader(stream)
         for row in reader:
@@ -434,29 +433,98 @@ def test33():
 4  日期和时间：导入datetime模块，获取当前日期和时间，格式化输出为"YYYY-MM-DD HH:MM:SS"。
 """
 
+
+def test34():
+    print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+
+
 """
 5  面向对象编程：定义一个Person类，包含属性name和age，以及方法say_hello()，实例化对象并调用方法。
 """
+
+
+def test35():
+    class Person:
+        def __init__(self, name, age):
+            self.name = name
+            self.age = age
+
+        def say_hello(self):
+            print(f"Hello, {self.name}!")
+
+    person = Person("Alice", 25)
+    person.say_hello()
+
 
 """
 6  函数参数解包：编写函数，接受不定数量的关键字参数，并打印所有键值对。
 """
 
+
+def test36():
+    def print_kwargs(**kwargs):
+        for key, value in kwargs.items():
+            print(f"{key}: {value}")
+
+    print_kwargs(name="Alice", age=25)
+
+
 """
 7  正则表达式：使用re模块，验证用户输入的手机号是否符合格式（假设格式为11位数字，以1开头）。
 """
+
+
+def test37():
+    phone = input("请输入手机号：")
+    if re.match(r"^1\d{10}$", phone):
+        print("手机号格式正确")
+    else:
+        print("手机号格式错误")
+
 
 """
 8  JSON数据处理：将字典{"name": "Alice", "age": 25}转换为JSON字符串，并打印结果。
 """
 
+
+def test38():
+    data = {"name": "Alice", "age": 25}
+    json_data = json.dumps(data)
+    print(json_data)
+
+
 """
 9  生成器：编写一个生成器函数，依次返回指定范围内的质数。
 """
 
+
+def test39():
+    def is_prime(n):
+        if n < 2:
+            return False
+        for i in range(2, int(n ** 0.5) + 1):
+            if n % i == 0:
+                return False
+        return True
+
+    def prime_generator(start, end):
+        for number in range(start, end + 1):
+            if is_prime(number):
+                yield number
+
+    for prime in prime_generator(2, 20):
+        print(prime)
+
+
 """
 10  上下文管理器：使用with语句打开文件，读取内容并打印。
 """
+
+
+def test40():
+    with open("../data/file.txt", "r") as stream:
+        data = stream.read()
+        print(data)
 
 
 if __name__ == "__main__":
