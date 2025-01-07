@@ -12,104 +12,104 @@
 # '''
 #
 customer_information = {}
-while True:
-    print('''功能编号如下：
-               1. 添加客户
-               2. 删除客户
-               3. 修改客户
-               4. 查询一个客户
-               5. 查询所有客户
-               6. 退出''')
-    operate = int(input("请输入您想进行的操作："))
-
-    if operate ==1:
-        name = input("请输入添加客户的姓名:")
-        age = input("请输入添加客户的年龄:")
-        email = input("请输入添加客户的邮箱:")
-        customer_information[name] = {"姓名":name,"年龄":age,"邮箱":email}
-        print(customer_information)
-    elif operate == 2:
-            try:
-                customer = input('请输入想删除的客户姓名：')
-
-                if customer_information[customer] is not None:
-                    customer_information.pop(customer)
-                    print('删除成功！')
-            except Exception as e:
-                    while True:
-                        customer = input("没有找到这个客户，请输入正确的客户名(按1返回上一级菜单栏)：")
-                        try:
-                            if int(customer) == 1:
-                                break
-                        except Exception as e:
-                            try:
-                                if customer_information[customer] is not None:
-                                    customer_information.pop(customer)
-                                    print('删除成功！')
-                                    break
-                            except Exception as e:
-                                    continue
-
-    elif operate == 3:
-        customer = input("请输入您想修改的客户的姓名:")
-        try:
-            if customer_information[customer] is not None:
-                name = input("请输入修改后的客户的姓名:")
-                age = input("请输入修改的后客户的年龄:")
-                email = input("请输入修改后的客户的邮箱:")
-                # information = customer_information[customer]
-                before = customer_information.pop(customer)
-                customer_information[name] = {"姓名": name, "年龄": age, "邮箱": email}
-                after = customer_information[name]
-                print(f'修改成功，客户{before}现在为{after}')
-                # print(information)
-        except Exception as e:
-                while True:
-                    customer = input("没有找到这个客户，请输入正确的客户名(按1返回上一级菜单栏)：")
-                    try:
-                        if int(customer) == 1:
-                            break
-                    except Exception as e:
-                        try:
-                            if customer_information[customer] is not None:
-                                name = input("请输入修改后的客户的姓名:")
-                                age = input("请输入修改的后客户的年龄:")
-                                email = input("请输入修改后的客户的邮箱:")
-                                # information = customer_information[customer]
-                                before = customer_information.pop(customer)
-                                customer_information[name] = {"姓名": name, "年龄": age, "邮箱": email}
-                                after = customer_information[name]
-                                print(f'修改成功，客户{before}现在为{after}')
-                                # print(information)
-                                break
-                        except Exception as e:
-                                continue
-    elif operate == 4:
-        customer = input('请输入想查询的客户姓名：')
-        try:
-            if customer_information[customer] is not None:
-                information = customer_information[customer]
-                print(information)
-        except Exception as e:
-            while True:
-                try:
-                    customer = input("没有找到这个客户，请输入正确的客户名(按1返回上一级菜单栏)：")
-                    if int(customer) == 1:
-                        break
-                except Exception as e:
-                    try:
-                        if customer_information[customer] is not None:
-                            information = customer_information[customer]
-                            print(information)
-                            break
-                    except Exception as e:
-                        continue
-
-    elif operate == 5:
-        print(customer_information.items())
-
-    elif operate == 6:
-        break
+# while True:
+#     print('''功能编号如下：
+#                1. 添加客户
+#                2. 删除客户
+#                3. 修改客户
+#                4. 查询一个客户
+#                5. 查询所有客户
+#                6. 退出''')
+#     operate = int(input("请输入您想进行的操作："))
+#
+#     if operate ==1:
+#         name = input("请输入添加客户的姓名:")
+#         age = input("请输入添加客户的年龄:")
+#         email = input("请输入添加客户的邮箱:")
+#         customer_information[name] = {"姓名":name,"年龄":age,"邮箱":email}
+#         print(customer_information)
+#     elif operate == 2:
+#             try:
+#                 customer = input('请输入想删除的客户姓名：')
+#
+#                 if customer_information[customer] is not None:
+#                     customer_information.pop(customer)
+#                     print('删除成功！')
+#             except Exception as e:
+#                     while True:
+#                         customer = input("没有找到这个客户，请输入正确的客户名(按1返回上一级菜单栏)：")
+#                         try:
+#                             if int(customer) == 1:
+#                                 break
+#                         except Exception as e:
+#                             try:
+#                                 if customer_information[customer] is not None:
+#                                     customer_information.pop(customer)
+#                                     print('删除成功！')
+#                                     break
+#                             except Exception as e:
+#                                     continue
+#
+#     elif operate == 3:
+#         customer = input("请输入您想修改的客户的姓名:")
+#         try:
+#             if customer_information[customer] is not None:
+#                 name = input("请输入修改后的客户的姓名:")
+#                 age = input("请输入修改的后客户的年龄:")
+#                 email = input("请输入修改后的客户的邮箱:")
+#                 # information = customer_information[customer]
+#                 before = customer_information.pop(customer)
+#                 customer_information[name] = {"姓名": name, "年龄": age, "邮箱": email}
+#                 after = customer_information[name]
+#                 print(f'修改成功，客户{before}现在为{after}')
+#                 # print(information)
+#         except Exception as e:
+#                 while True:
+#                     customer = input("没有找到这个客户，请输入正确的客户名(按1返回上一级菜单栏)：")
+#                     try:
+#                         if int(customer) == 1:
+#                             break
+#                     except Exception as e:
+#                         try:
+#                             if customer_information[customer] is not None:
+#                                 name = input("请输入修改后的客户的姓名:")
+#                                 age = input("请输入修改的后客户的年龄:")
+#                                 email = input("请输入修改后的客户的邮箱:")
+#                                 # information = customer_information[customer]
+#                                 before = customer_information.pop(customer)
+#                                 customer_information[name] = {"姓名": name, "年龄": age, "邮箱": email}
+#                                 after = customer_information[name]
+#                                 print(f'修改成功，客户{before}现在为{after}')
+#                                 # print(information)
+#                                 break
+#                         except Exception as e:
+#                                 continue
+#     elif operate == 4:
+#         customer = input('请输入想查询的客户姓名：')
+#         try:
+#             if customer_information[customer] is not None:
+#                 information = customer_information[customer]
+#                 print(information)
+#         except Exception as e:
+#             while True:
+#                 try:
+#                     customer = input("没有找到这个客户，请输入正确的客户名(按1返回上一级菜单栏)：")
+#                     if int(customer) == 1:
+#                         break
+#                 except Exception as e:
+#                     try:
+#                         if customer_information[customer] is not None:
+#                             information = customer_information[customer]
+#                             print(information)
+#                             break
+#                     except Exception as e:
+#                         continue
+#
+#     elif operate == 5:
+#         print(customer_information.items())
+#
+#     elif operate == 6:
+#         break
 print(customer_information)
 #
 #
@@ -297,6 +297,6 @@ poke_nums = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']   -----------------
 # '''
 # 案例1: 构建一个列表，存储1-10的平方值       ---------------------------------------------------
 # '''
-# square_list = [i**2 for i in range(1,11) ]
-# print(square_list)
+square_list = [pow(i, 2) for i in range(1,11)]
+print(square_list)
 
