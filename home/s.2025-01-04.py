@@ -25,9 +25,10 @@ class User:
     name: str
     age: str
     email: str
+    sex: str
 
     def __str__(self: Self):
-        return f"姓名: {self.name}, 年龄: {self.age}, 邮箱: {self.email}"
+        return f"姓名: {self.name}, 年龄: {self.age}, 邮箱: {self.email}, 性别: {self.sex}"
 
     @property
     def to_dict(self: Self) -> Dict[str, ...]:
@@ -47,7 +48,7 @@ class UserInfoManager:
         if not data:
             return []
         else:
-            return [User(user.get("name"), user.get("age"), user.get("email")) for user in data]
+            return [User(user.get("name"), user.get("age"), user.get("email"), user.get("sex")) for user in data]
 
     def write(self: Self, users: Sequence[User]):
         with open(self.path, "w", encoding=self.encoding) as stream:
@@ -86,6 +87,7 @@ class UserInfoManager:
                 userc.name = user.name
                 userc.age = user.age
                 userc.email = user.email
+                userc.sex = user.sex
                 self.write(self.users)
                 return True
         return False
@@ -107,7 +109,8 @@ def main():
             name = input("请输入添加客户的姓名: ")
             age = input("请输入添加客户的年龄: ")
             email = input("请输入添加客户的邮箱: ")
-            user = User(name, age, email)
+            sex = input("请输入添加客户的性别: ")
+            user = User(name, age, email, sex)
             user_info_manager = UserInfoManager(database)
             flag = user_info_manager.add(user)
             if flag:
@@ -130,7 +133,8 @@ def main():
             name = input("请输入修改的客户姓名(新): ")
             age = input("请输入修改的客户年龄(新): ")
             email = input("请输入修改的客户邮箱(新): ")
-            user = User(name, age, email)
+            sex = input("请输入添加客户的性别(新): ")
+            user = User(name, age, email, sex)
             user_info_manager = UserInfoManager(database)
             flag = user_info_manager.update(old_name, user)
             if flag:

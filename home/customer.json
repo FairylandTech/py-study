@@ -1,7 +1,8 @@
 [
   {
-    "name": "Alice",
+    "name": "alice",
     "age": "12",
-    "email": "a"
+    "email": "E",
+    "sex": "a"
   }
 ]
