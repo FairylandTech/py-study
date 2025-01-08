@@ -86,7 +86,7 @@ def func3(a,b):
     return a+b
 
 # action(func3) = wrapper
-# print(action(func3)(1,2))
+# print(action(func3)(1,2))     #action(func3) = wrapper(func3) = func    action(func3)(1,2) = func(1,2)
 # print(func3(1, 2))
 
 
@@ -124,6 +124,13 @@ def func4(a):
 
 # print(func4(4))
 
+
+'''
+action2(timestamp=False) = outer    
+action2(timestamp=False)(func4) = outer(func4) = func    
+action2(timestamp=False)(func4)(1) = outer(func4)(1) = func(1)
+'''
+
 # print(action2(timestamp=False)(func4)(1))
 
 # @action2(timestamp=False)
@@ -135,7 +142,24 @@ def func5(a):
 
 # print(func5(2))
 
+'''
+action2(timestamp=False) = outer 
+action2(timestamp=False)(action) = outer(action)
+
+action(func5) = wrapper() = func   action(func5))(1) = func(1)
+action2(timestamp=False)(action(func5)) = outer(action(func5)) = outer(wrapper()) = outer(func) = wrapper
+action2(timestamp=False)(action(func5))(1) = outer(action(func5)(1) = outer(wrapper()(1)) = 
+'''
+
 print(action2(timestamp=False)(action(func5))(1))
+
+'''
+print(action2(timestamp=False)(action(func5))(1))
+action2(timestamp=False)(action(func5))(1)
+(action(func5))(1)
+action(func5)(1)
+'''
+
 
 class A():
 
