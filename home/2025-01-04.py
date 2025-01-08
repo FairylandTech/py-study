@@ -111,8 +111,10 @@ customer_information = {}
 #     elif operate == 6:
 #         break
 print(customer_information)
-#
-#
+
+
+
+
 # # # customer_information = {'aa':{'姓名': 'aa', '年龄': 'asd', '邮箱': 'asd'},'ad':{'姓名': 'ad', '年龄': 'asd', '邮箱': 'asd'}}
 # # # customer_information = {'aa':'asdsd', 'ad':'dgfs'}
 # # name = input("请输入添加客户的姓名:")
@@ -134,8 +136,16 @@ print(customer_information)
 # # # print(a[c])
 # # a = customer_information['aa']
 # # print(a)
-#
-#
+
+
+
+
+
+
+
+
+
+
 # '''
 # 示例：计算BMI并给出健康建议           -------------------------------------------------------
 # '''
