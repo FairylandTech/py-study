@@ -35,7 +35,9 @@ dic_str = str(dic)
 print(type(dic_str), dic_str)  # str 转为字符串类型, int 转为整型, tuple 转为元组, dict 转为字典, set 转为集合, 等
 
 # eval 将字符串中的数据结构提出出来
-print(type(eval(dic_str)), eval(dic_str))  # eval
+print(type(eval(dic_str)), eval(dic_str)) # eval
+# print(eval(dic_str))
+# print(type(eval(dic_str)))
 
 # eval 吧字符串的表达式做数据运算
 var_1 = "1+2*(3/2-1)+10"
