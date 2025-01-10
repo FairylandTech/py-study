@@ -173,7 +173,7 @@ from typing import List,Dict
 encodeing = 'utf-8'
 file_path = "user_information"
 login_status = 0
-user = False
+user = None
 
 def load_users(file_path: str) -> List[Dict[str,str]]:
     if os.path.isfile(file_path):
@@ -208,12 +208,29 @@ def register(name: str,password: str):
         user = name
         return True
     else:
+        login_status = 0
+        user = None
         return False
 
 def login(name: str,password: str):
     data = load_users(file_path)
     user_mapping = {user.get(name):user for user in data}
-    if 
+    if user_mapping.get(name) is not None:
+        user_information = user_mapping.get(name)
+        num = 0
+        while num <= 3:
+            if name == user_information.get(name) and password == user_information.get(password):
+                global login_status
+                global user
+                login_status = 1
+                user = name
+                return True
+                break
+            else:
+                login_status = 0
+                user = None
+                num += 1
+                return False
 
 def main():
     while True:
@@ -226,24 +243,52 @@ def main():
         print('6: 退出程序')
         choice = int(input('请输入你的操作选择：'))
         if choice == 1:
-            name = input('请输入你的登录用户名：')
-            password = input('请输入你的登录密码：')
+            if login_status == 0:
+                name = input('请输入你的登录用户名：')
+                password = input('请输入你的登录密码：')
+                if login(name,password):
+                    print(f'登录成功，欢迎您{user}!')
+                else:
+                    print('用户名或密码错误，请重新登录')
+            else:
+                print('您当前已经登录，无需登录')
 
         elif choice == 2:
-            name = input('请输入你的注册用户名：')
-            password = input('请输入你的注册密码：')
-            re_password = input('二次确认密码：')
-            if password == re_password:
-                if register(name,password):
-                    print('注册成功')
+            if login_status == 0:
+                name = input('请输入你的注册用户名：')
+                password = input('请输入你的注册密码：')
+                re_password = input('二次确认密码：')
+                if password == re_password:
+                    if register(name,password):
+                        print('注册成功')
+                    else:
+                        print('注册失败')
+                else:
+                    print('两次输入密码不一致，请重新输入：')
             else:
-                print('两次输入密码不一致，请重新输入：')
+                print('您当前已经登录，请注销后在注册')
 
         elif choice == 3:
             print('欢迎xx用户访问评论文章页面')
+            print('1.查看文章')
+            print('2.添加文章')
+            print('3.删除文章')
+            print('4.返回上一单元')
+            choice = int(input('请输入'))
+
 
         elif choice == 4:
             print('欢迎xx用户访问评论日记页面')
+            进入日记页面:
+            1.
+            查看日记
+            2.
+            添加日记
+            3.
+            删除日记
+            4.
+            返回单一单元
+
 
         elif choice == 5:
             global login_status
