@@ -1,6 +1,6 @@
 import time
 
-from anaconda_navigator.utils.url_utils import file_name
+
 
 
 def test_function(parm1:str,parm2:int):
@@ -171,12 +171,23 @@ def test_function(parm1:str,parm2:int):
 
 import json
 import os
+import time
+import datetime
 from typing import List,Dict
 
 encodeing = 'utf-8'
 file_path = "user_information"
 login_status = 0
 user = None
+
+def log(user: str,func: str):
+    file_name = '日志文件.txt'
+    now_time = datetime.time
+    file_data = f"用户:{user}在{now_time} 执行了{func}函数"
+    with open(file_name, 'a', encoding=encodeing) as article_information:
+        article_information.write(file_data)
+        return True
+
 
 def load_users(file_path: str) -> List[Dict[str,str]]:
     if not os.path.isfile(file_path):
@@ -224,7 +235,7 @@ def login(name: str,password: str):
         user_information = user_mapping.get(name)
         num = 0
         while num <= 3:
-            if name == user_information.get(name) and password == user_information.get(password):
+            if name == user_information.get("name") and password == user_information.get("password"):
                 global login_status
                 global user
                 login_status = 1
@@ -235,10 +246,12 @@ def login(name: str,password: str):
                 login_status = 0
                 user = None
                 num += 1
-                return False
+                if num == 3:  # 达到3次错误，直接结束
+                    print("失败超过三次，本次服务结束")
+                    return False
 def read_article(article_name: str):
     file_name = user + '文章' + article_name+ '.txt'
-    with open(file_name,'r',encodeing) as article_information:
+    with open(file_name,'r',encoding=encodeing) as article_information:
         article = article_information.read()
         if article:
             return article
@@ -247,7 +260,7 @@ def read_article(article_name: str):
 
 def write_article(article_name: str,article_data: str):
     file_name = user + '文章' + article_name + '.txt'
-    with open(file_name,'w',encodeing) as article_information:
+    with open(file_name,'w',encoding=encodeing) as article_information:
         article_information.write(article_data)
         return True
 
@@ -258,7 +271,7 @@ def delete_article(article_name: str):
 
 def read_diary(diary_name: str):
     file_name = user + '日记' + diary_name + '.txt'
-    with open(file_name,'r',encodeing) as diary_information:
+    with open(file_name,'r',encoding=encodeing) as diary_information:
         diary = diary_information.read()
         if diary:
             return diary
@@ -267,7 +280,7 @@ def read_diary(diary_name: str):
 
 def write_diary(diary_name: str,diary_data: str):
     file_name = user + '日记' + diary_name + '.txt'
-    with open(file_name,'w',encodeing) as diary_information:
+    with open(file_name,'w',encoding=encodeing) as diary_information:
         diary_information.write(diary_data)
         return True
 
@@ -277,6 +290,8 @@ def delete_diary(diary_name: str):
     return True
 
 def main():
+    global login_status
+    global user
     while True:
         print('欢迎来到博客园首页')
         print('1:请登录')
@@ -292,6 +307,7 @@ def main():
                 password = input('请输入你的登录密码：')
                 if login(name,password):
                     print(f'登录成功，欢迎您{user}!')
+                    log(user,'login')
                 else:
                     print('用户名或密码错误，请重新登录')
             else:
@@ -305,6 +321,7 @@ def main():
                 if password == re_password:
                     if register(name,password):
                         print('注册成功')
+                        log(user,'register')
                     else:
                         print('注册失败')
                 else:
@@ -326,6 +343,7 @@ def main():
                         article =  read_article(file_name)
                         if article:
                             print(article)
+                            log(user,'read_article')
                         else:
                             print('没有找到这篇文章')
                     elif choice == 2:
@@ -334,11 +352,13 @@ def main():
                         result = write_article(file_name,article)
                         if result:
                             print('添加成功')
+                            log(user, 'write_article')
                         else:
                             print('添加失败')
                     elif choice == 3:
                         file_name = input('请输入你删除的文章名:')
                         delete_article(file_name)
+                        log(user, 'write_article')
                         print('删除成功！')
                     elif choice == 4:
                         break
@@ -349,7 +369,7 @@ def main():
         elif choice == 4:
             if login_status == 1:
                 while True:
-                    print('欢迎xx用户访问评论日记页面')
+                    print(f'欢迎{user}用户访问评论日记页面')
                     print('1.查看日记')
                     print('2.添加日记')
                     print('3.删除日记')
@@ -358,6 +378,7 @@ def main():
                     if choice == 1:
                         file_name = input('请输入你想查看的日记名')
                         diary = read_diary(file_name)
+                        log(user,'read_diary')
                         if diary:
                             print(diary)
                         else:
@@ -365,7 +386,8 @@ def main():
                     elif choice == 2:
                         file_name = input('请输入你添加的日记名:')
                         diary = input('请输入你的日记内容：')
-                        result = write_article(file_name, diary)
+                        result = write_diary(file_name, diary)
+                        log(user,'write_diary')
                         if result:
                             print('添加成功')
                         else:
@@ -373,6 +395,7 @@ def main():
                     elif choice == 3:
                         file_name = input('请输入你删除的日记名:')
                         delete_diary(file_name)
+                        log(user, 'delete_diary')
                         print('删除成功！')
                     elif choice == 4:
                         break
@@ -381,8 +404,6 @@ def main():
 
 
         elif choice == 5:
-            global login_status
-            global user
             login_status = 0
             user = False
             print('注销成功')
