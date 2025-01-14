@@ -1,5 +1,8 @@
 import time
 
+from anaconda_navigator.utils.url_utils import file_name
+
+
 def test_function(parm1:str,parm2:int):
     print(f"参数1：{parm1}")
     print(f'数字参数2：{parm2}')
@@ -176,18 +179,19 @@ login_status = 0
 user = None
 
 def load_users(file_path: str) -> List[Dict[str,str]]:
-    if os.path.isfile(file_path):
+    if not os.path.isfile(file_path):
         return []
-    with open(file_path,'r',encodeing) as user_information:
+    with open(file_path,'r',encoding=encodeing) as user_information:
         data = json.load(user_information)
 
     return data
 
 def save_user(file_path: str,data: List[Dict[str,str]]):
     try:
-        with open(file_path,'w',encodeing) as user_information:
-            datas = json.dump(data)
-            user_information.write(datas)
+        with open(file_path,'w',encoding=encodeing) as user_information:
+            # datas = json.dump(data)
+            # user_information.write(datas)
+            json.dump(data,user_information)
             return True
     except Exception as e:
         print(e)
@@ -200,8 +204,9 @@ def register(name: str,password: str):
      "name":name,
      "password":password
     }
-    datas = data.append(user_dict)
-    if save_user(file_path,datas):
+    # datas = data.append(user_dict)
+    data.append(user_dict)
+    if save_user(file_path,data):
         global login_status
         global user
         login_status = 1
@@ -214,7 +219,7 @@ def register(name: str,password: str):
 
 def login(name: str,password: str):
     data = load_users(file_path)
-    user_mapping = {user.get(name):user for user in data}
+    user_mapping = {user.get("name"):user for user in data}
     if user_mapping.get(name) is not None:
         user_information = user_mapping.get(name)
         num = 0
@@ -231,6 +236,45 @@ def login(name: str,password: str):
                 user = None
                 num += 1
                 return False
+def read_article(article_name: str):
+    file_name = user + '文章' + article_name+ '.txt'
+    with open(file_name,'r',encodeing) as article_information:
+        article = article_information.read()
+        if article:
+            return article
+        else:
+            return None
+
+def write_article(article_name: str,article_data: str):
+    file_name = user + '文章' + article_name + '.txt'
+    with open(file_name,'w',encodeing) as article_information:
+        article_information.write(article_data)
+        return True
+
+def delete_article(article_name: str):
+    file_name = user + '文章' + article_name+ '.txt'
+    os.remove(file_name)
+    return True
+
+def read_diary(diary_name: str):
+    file_name = user + '日记' + diary_name + '.txt'
+    with open(file_name,'r',encodeing) as diary_information:
+        diary = diary_information.read()
+        if diary:
+            return diary
+        else:
+            return None
+
+def write_diary(diary_name: str,diary_data: str):
+    file_name = user + '日记' + diary_name + '.txt'
+    with open(file_name,'w',encodeing) as diary_information:
+        diary_information.write(diary_data)
+        return True
+
+def delete_diary(diary_name: str):
+    file_name = user + '日记' + diary_name + '.txt'
+    os.remove(file_name)
+    return True
 
 def main():
     while True:
@@ -269,25 +313,71 @@ def main():
                 print('您当前已经登录，请注销后在注册')
 
         elif choice == 3:
-            print('欢迎xx用户访问评论文章页面')
-            print('1.查看文章')
-            print('2.添加文章')
-            print('3.删除文章')
-            print('4.返回上一单元')
-            choice = int(input('请输入'))
+            if login_status == 1:
+                while True:
+                    print(f'欢迎{user}用户访问评论文章页面')
+                    print('1.查看文章')
+                    print('2.添加文章')
+                    print('3.删除文章')
+                    print('4.返回上一单元')
+                    choice = int(input('请输入你的操作选择：'))
+                    if choice == 1:
+                        file_name = input('请输入你想查看的文章名')
+                        article =  read_article(file_name)
+                        if article:
+                            print(article)
+                        else:
+                            print('没有找到这篇文章')
+                    elif choice == 2:
+                        file_name = input('请输入你添加的文章名:')
+                        article = input('请输入你的文章内容：')
+                        result = write_article(file_name,article)
+                        if result:
+                            print('添加成功')
+                        else:
+                            print('添加失败')
+                    elif choice == 3:
+                        file_name = input('请输入你删除的文章名:')
+                        delete_article(file_name)
+                        print('删除成功！')
+                    elif choice == 4:
+                        break
+            else:
+                print('您当前未登录，请登录后再来')
 
 
         elif choice == 4:
-            print('欢迎xx用户访问评论日记页面')
-            进入日记页面:
-            1.
-            查看日记
-            2.
-            添加日记
-            3.
-            删除日记
-            4.
-            返回单一单元
+            if login_status == 1:
+                while True:
+                    print('欢迎xx用户访问评论日记页面')
+                    print('1.查看日记')
+                    print('2.添加日记')
+                    print('3.删除日记')
+                    print('4.返回单一单元')
+                    choice = int(input('请输入你的操作选择：'))
+                    if choice == 1:
+                        file_name = input('请输入你想查看的日记名')
+                        diary = read_diary(file_name)
+                        if diary:
+                            print(diary)
+                        else:
+                            print('没有找到这篇日记')
+                    elif choice == 2:
+                        file_name = input('请输入你添加的日记名:')
+                        diary = input('请输入你的日记内容：')
+                        result = write_article(file_name, diary)
+                        if result:
+                            print('添加成功')
+                        else:
+                            print('添加失败')
+                    elif choice == 3:
+                        file_name = input('请输入你删除的日记名:')
+                        delete_diary(file_name)
+                        print('删除成功！')
+                    elif choice == 4:
+                        break
+            else:
+                print('您当前未登录，请登录后再来')
 
 
         elif choice == 5:
@@ -295,6 +385,7 @@ def main():
             global user
             login_status = 0
             user = False
+            print('注销成功')
 
         elif choice == 6:
             break
