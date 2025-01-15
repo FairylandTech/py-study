@@ -213,7 +213,6 @@ def register(name: str,password: str):
 def login(name: str,password: str):
     data = load_users(file_path)
     user_mapping = {user.get(name):user for user in data}
-    if 
 
 def main():
     while True:

@@ -224,3 +224,31 @@ def factorizl(n):
         return n * factorizl(n - 1)
 
 # print(factorizl(5))
+
+import time
+from functools import wraps
+
+def rate_limiter(seconds):
+    def decorator(func):
+        last_called = [0]  # 使用列表以便在闭包中修改
+
+        def wrapper(*args, **kwargs):
+            current_time = time.time()
+            if current_time - last_called[0] < seconds:
+                print(f"警告: 函数 {func.__name__} 被调用的频率过高，请等待 {seconds - (current_time - last_called[0]):.2f} 秒再试。")
+            else:
+                last_called[0] = current_time
+                return func(*args, **kwargs)
+        return wrapper
+    return decorator
+
+@rate_limiter(5)
+def my_function():
+    print("函数执行成功！")
+
+# 测试代码
+my_function()  # 第一次调用，正常执行
+time.sleep(2)
+my_function()  # 第二次调用，应该打印警告
+time.sleep(5)
+my_function()  # 第三次调用，正常执行
