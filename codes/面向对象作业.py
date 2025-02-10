@@ -14,11 +14,17 @@ class Star:
         return f"{self.name}是我的偶像, 我非常喜欢他的电影{self.film}"
 
     def __del__(self):
-        print(f"我不喜欢{self.film}了")
+        print(f"我不喜欢{self.name}了")
 
 
+if __name__ == "__main__":
+    stats = {}
+    for i in range(5):
+        name = input("请输入明星名字: ")
+        film = input("请输入明星电影: ")
+        stats.update({name: film})
 
-
-if __name__ == '__main__':
-    zhou_xing_chi = Star("周星驰", "功夫")
-    zhou_xing_chi.playing()
+    for name, film in stats.items():
+        star = Star(name, film)
+        star.playing()
+        print(star)
