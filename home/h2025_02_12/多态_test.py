@@ -20,11 +20,11 @@ p2 = Person("二电厂",36)
 print(p1)
 print(p2)
 
-p1.number()
-p2.number()
+p1.count()
+p2.count()
 
 p1.study()
 p2.study()
 
 p2.__del__()
-p1.number()
+Person.count()

@@ -63,7 +63,8 @@ class Person:
     def __del__(self):
         Person.number_of -= 2
 
-    def number(self):
+    @classmethod
+    def count(cls):
         print(Person.number_of)
 
     @classmethod
