@@ -1,0 +1,46 @@
+pip-tools
+pipreqs
+flake8
+isort
+black
+mypy
+pydocstyle
+pylint
+autopep8
+pylama
+pigar
+pipdeptree
+pip-review
+pip-autoremove
+
+setuptools
+loguru
+python-dateutil
+python-dotenv
+requests
+
+pyyaml
+cryptography
+netifaces
+
+pymysql
+psycopg2
+psycopg2-binary
+elasticsearch
+
+# django
+# djangorestframework
+# django-redis
+# django-filter
+# django-cors-headers
+# django-simpleui
+# django-tenant-schemas
+# django-tenants
+# django-extensions
+# django-celery-results
+# drf-yasg
+# drf-spectacular
+# coreapi
+# pygments
+# markdown
+# uritemplate
