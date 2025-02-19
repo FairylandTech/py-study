@@ -10,7 +10,6 @@
 from django.urls import path
 
 from app.views import test
+from app.views import UserInfoAPIView
 
-urlpatterns = [
-    path(r"/test", test),
-]
+urlpatterns = [path(r"/test", test), path("/user", UserInfoAPIView.as_view())]
