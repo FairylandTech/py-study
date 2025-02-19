@@ -49,7 +49,7 @@ zifuchuan = '阿三，haha'
 # print(qiepian)
 
 #将字符串的逆序输出
-nixu = 
+# nixu =
 
 # #字符串的方法
 # #分割，split方法  --以XX为分割，会被分割为一个列表，默认有多少分割多少，可以限定分割次数
