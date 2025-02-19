@@ -189,9 +189,9 @@ mao_list = []
 #     suo_yin =
 #     for hou_number in num_list:
 
-'''3  读取CSV文件：使用csv模块读取一个CSV文件，并打印每一行内容（假设文件存在）。'''
 
 '''4  日期和时间：导入datetime模块，获取当前日期和时间，格式化输出为"YYYY-MM-DD HH:MM:SS"。'''
+'''3  读取CSV文件：使用csv模块读取一个CSV文件，并打印每一行内容（假设文件存在）。'''
 
 '''5  面向对象编程：定义一个Person类，包含属性name和age，以及方法say_hello()，实例化对象并调用方法。'''
 
