@@ -39,7 +39,7 @@ class MysqlCursor(DictCursor):
 
 class SqlTools:
 
-    def __init__(self,host,port,user,password,db_name,charset):
+    def __init__(self):
         self.__host = 'localhost'
         self.__port = '3306'
         self.__user = 'root'
@@ -71,7 +71,7 @@ class SqlTools:
     def charset(self):
         return self.__charset
 
-    def get_conn(self,host,port,user,password,db_name,charset):
+    def get_conn(self):
         self.db = MysqlConnection(
             host=self.__host,
             port=self.__port,
