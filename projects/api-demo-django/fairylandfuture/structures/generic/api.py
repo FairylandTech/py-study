@@ -10,7 +10,7 @@
 from dataclasses import dataclass, field
 from typing import MutableSequence, Sequence, MutableMapping, Mapping, Union
 
-from fairylandfuture.core.superclass.structures import BaseStructure
+from fairylandfuture.core.superclass.structures.structure import BaseStructure
 from fairylandfuture.const.response.code import RESPONSE_CODE_MAP
 
 

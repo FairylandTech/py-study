@@ -7,7 +7,7 @@
 @datetime: 2025-02-17 17:50:47 UTC+08:00
 """
 
-from fairylandfuture.core.superclass.exceptions.exceptions import BaseProgramException
+from fairylandfuture.core.superclass.exceptions.exception import BaseProgramException
 
 
 class ElasticSearchExecutionException(BaseProgramException):

@@ -7,9 +7,9 @@
 @datetime: 2024-12-23 16:35:23 UTC+08:00
 """
 
-from typing import Dict, Any, List, Optional, Sequence, Tuple
+from typing import Dict, Any, List, Optional, Sequence, Tuple, Union
 
-from fairylandfuture.core.superclass.structures import BaseStructureTreeNode
+from fairylandfuture.core.superclass.structures.structure import BaseStructureTreeNode
 
 
 class TreeBuilder:
@@ -20,7 +20,10 @@ class TreeBuilder:
         if not data:
             raise ValueError("Input data cannot be empty.")
 
-        nodes = {item.get(id_field): cls.node(item.get(id_field), parent_id=item.get(parent_id_field), data=item) for item in data}
+        nodes: Dict[Union[str, int], BaseStructureTreeNode] = {
+            item.get(id_field): cls.node(item.get(id_field), parent_id=item.get(parent_id_field), data=item)
+            for item in data
+        }
         root_nodes = []
 
         for node in nodes.values():

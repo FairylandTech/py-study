@@ -34,7 +34,7 @@ class ElasticSearchOperator:
         indices: Dict[str, ...] = self.client.indices.get("*")
         return tuple([index for index in indices.keys()])
 
-    def simpler_search(self, index, dsl) -> Tuple[int, Sequence[Dict[str, ...]]]:
+    def simple_search(self, index, dsl) -> Tuple[int, Sequence[Dict[str, ...]]]:
         data: Dict[str, ...] = self.client.search(index=index, body=dsl)
         if data.get("timed_out"):
             raise ElasticSearchExecutionException(ElasticSearchExceptMessage.TIMEOUT)
@@ -79,7 +79,8 @@ if __name__ == '__main__':
     }
     # data = client.search(query, "internal_isop_event*")
 
-    total, hits = es_operator.simpler_search(index, query)
+    total, hits = es_operator.simple_search(index, query)
     print(hits)
+
 
     # print(data)

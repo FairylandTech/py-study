@@ -7,7 +7,7 @@
 @datetime: 2024-08-10 18:32:09 UTC+08:00
 """
 
-from fairylandfuture.core.superclass.exceptions import BaseProgramException
+from fairylandfuture.core.superclass.exceptions.exception import BaseProgramException
 
 
 class FileReadException(BaseProgramException):

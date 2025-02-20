@@ -1,46 +1,61 @@
-pip-tools
-pipreqs
+pip-tools  # pip-sync, pip-compile
+pipreqs  # pipreqs --encoding=UTF-8 --force .
 flake8
 isort
-black
+black  # black --line-length 170 --target-version py311 .
 mypy
 pydocstyle
 pylint
 autopep8
 pylama
-pigar
-pipdeptree
-pip-review
-pip-autoremove
+pigar  # pigar -p requirements.txt
+pipdeptree  # pipdeptree -fl
+pip-review  # pip-review --interactive
+pip-autoremove  # pip-autoremove -y <package name>
+uv  # new package manager
 
 setuptools
-loguru
-python-dateutil
-python-dotenv
-requests
+wheel
+pip
 
-pyyaml
-cryptography
-netifaces
+loguru  # Log processing
+python-dateutil  # Date processing
+python-dotenv  # Environment variable processing
+requests  # HTTP(S) requests
 
-pymysql
-psycopg2
-psycopg2-binary
+pyyaml  # YAML processing
+cryptography  # required C library, SSL/TLS, encryption processing
+netifaces  # required C library, network interface processing
+
+pymysql  # MySQL processing
+psycopg2  # PostgreSQL processing
+psycopg2-binary  # PostgreSQL processing
+elasticsearch  # Elasticsearch processing
+mysql-connector-python  # MySQL processing
+sqlalchemy  # ORM
+DBUtils  # Connection pooling
+aiomysql  # Asynchronous MySQL processing
+kafka-python  # Kafka processing
+faker  # Fake data generation
+pypinyin  # Chinese Pinyin processing
+
+django  # Django web framework
+djangorestframework  # RESTful API framework
+django-redis  # Django Redis processing
+django-filter  # Django filtering
+django-cors-headers  # Django CORS processing
+django-simpleui  # Django admin UI
+django-tenant-schemas  # Django multi-tenant processing
+django-tenants  # Django multi-tenant processing
+django-extensions  # Django extensions
+django-celery-results  # Django Celery processing
+drf-yasg  # Django REST framework Swagger
+drf-spectacular  # Django REST framework OpenAPI
+coreapi  # Django REST framework CoreAPI
+pygments  # Django REST framework Pygments
+markdown  # Markdown Support
+uritemplate  # URL Template, URL building
+
 elasticsearch
-
-# django
-# djangorestframework
-# django-redis
-# django-filter
-# django-cors-headers
-# django-simpleui
-# django-tenant-schemas
-# django-tenants
-# django-extensions
-# django-celery-results
-# drf-yasg
-# drf-spectacular
-# coreapi
-# pygments
-# markdown
-# uritemplate
+elasticsearch[async]
+opensearch-py

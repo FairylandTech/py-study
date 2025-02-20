@@ -9,6 +9,9 @@ from utils.db import dbtools
 from fairylandfuture.modules.validator.validators import Validator, RequestParamsValidator
 
 from app.services import UserInfoService
+from utils.journal import journal
+from utils.api.response import OverrideJsonResponse
+from utils.structutes.response import StructureResponse
 
 
 def test(request: HttpRequest) -> HttpResponseBase:
@@ -42,27 +45,46 @@ def validata_size(value: int):
 class UserInfoAPIView(View):
 
     def get(self, request: HttpRequest) -> HttpResponseBase:
+        journal.info(f"用户视图::查询::{self.__class__.__name__}")
+
         query_params = request.GET
+        response: StructureResponse = StructureResponse()
 
-        # 1. 获取前端传来的查询参数
-        name = query_params.get("name")
-        account = query_params.get("account")
-        page = query_params.get("page", 1)
-        size = query_params.get("size", 10)
+        try:
+            # 1. 获取前端传来的查询参数
+            name = query_params.get("name")
+            account = query_params.get("account")
+            page = query_params.get("page", 1)
+            size = query_params.get("size", 10)
 
-        # 校验前端传来的值是否合法
-        validata_scheam = {
-            "name": Validator(False, str),
-            "account": Validator(False, str),
-            "page": Validator(True, int, validata_page),
-            "size": Validator(True, int, validata_size),
-        }
-        validata_data = {"name": name, "account": account, "page": int(page), "size": int(size)}
-        params = RequestParamsValidator(validata_scheam).validate(validata_data)
-        params = {key: value for key, value in params.items() if value}
-        print(params)
+            try:
+                # 校验前端传来的值是否合法
+                validata_scheam = {
+                    "name": Validator(False, str),
+                    "account": Validator(False, str),
+                    "page": Validator(True, int, validata_page),
+                    "size": Validator(True, int, validata_size),
+                }
+                validata_data = {"name": name, "account": account, "page": int(page), "size": int(size)}
+                params = RequestParamsValidator(validata_scheam).validate(validata_data)
+                params = {key: value for key, value in params.items() if value}
+            except Exception as err:
+                journal.error(str(err))
+                response.message = "参数校验错误"
+                raise RuntimeError("参数校验错误")
 
-        # 2. 把获取的参数传到 service 中, 来实现业务逻辑
-        data = {"code": 200, "message": "查询成功", "data": UserInfoService.query(params)}
+            # 2. 把获取的参数传到 service 中, 来实现业务逻辑
+            data = UserInfoService.query(params)
 
-        return JsonResponse(data, json_dumps_params={"ensure_ascii": False})
+            response.code = 200
+            response.message = "查询成功"
+            response.data = data
+
+            journal.success(f"用户视图::查询用户成功::{self.__class__.__name__}")
+        except Exception as err:
+            journal.error(str(err))
+            response.code = 500
+            response.message = "服务器内部错误" if not response.message else response.message
+            journal.error(f"用户视图::查询用户失败::{self.__class__.__name__}")
+        finally:
+            return OverrideJsonResponse(response.asdict)
