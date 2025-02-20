@@ -1,12 +1,8 @@
-from distutils.command.register import register
-from http.client import responses
-
-from django.http import JsonResponse
-from django.shortcuts import render , HttpResponse
-from django.http.request import HttpRequest
-from django.views import View
+import json
 
 from practice.service import UserInfoService
+from django.shortcuts import HttpResponse,render
+
 
 # Create your views here.
 class UserInfoView():
@@ -14,9 +10,22 @@ class UserInfoView():
         return render(request,'UserInformation.html')
 
     def post(self,request):
-        user_name = request.POST.get('user_name')
-        user_account = request.POST.get('user_account')
-        search_information = {'user_name':user_name,'user_account':user_account}
-        user_info = UserInfoService.query_info(search_information)
+        name = request.GET.get('name')
+        account = request.GET.get('account')
+        page = request.GET.get('page')
+        size = request.GET.get('size')
+
+
+        
+        user_info = UserInfoService.query_info()
 
         return user_info
+
+
+
+
+
+
+
+def test(request):
+    return HttpResponse(json.dumps({"msg": "ok"}))

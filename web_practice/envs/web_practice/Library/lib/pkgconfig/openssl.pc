@@ -1,0 +1,9 @@
+prefix=C:/Users/Administrator/Desktop/pycharm_project/py_study_project/py-study/web_practice/envs/web_practice/Library 
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: OpenSSL
+Description: Secure Sockets Layer and cryptography libraries and tools
+Requires: libssl libcrypto
+Version: 3.0.15 

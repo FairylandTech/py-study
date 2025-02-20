@@ -1,0 +1,19 @@
+==> 2025-02-17 16:52:19 <==
+# cmd: D:\bianchengruanjian\Anaconda\Scripts\conda-script.py create --prefix=C:\Users\Administrator\Desktop\pycharm_project\py_study_project\py-study\web_practice\envs\web_practice python=3.11
+# conda version: 24.11.3
++https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/noarch::tzdata-2025a-h04d1e81_0
++https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/win-64::bzip2-1.0.8-h2bbff1b_6
++https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/win-64::ca-certificates-2024.12.31-haa95532_0
++https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/win-64::libffi-3.4.4-hd77b12b_1
++https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/win-64::openssl-3.0.15-h827c3e9_0
++https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/win-64::pip-25.0-py311haa95532_0
++https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/win-64::python-3.11.11-h4607a30_0
++https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/win-64::setuptools-75.8.0-py311haa95532_0
++https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/win-64::sqlite-3.45.3-h2bbff1b_0
++https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/win-64::tk-8.6.14-h0416ee5_0
++https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/win-64::vc-14.42-haa95532_4
++https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/win-64::vs2015_runtime-14.42.34433-he0abc0d_4
++https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/win-64::wheel-0.45.1-py311haa95532_0
++https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/win-64::xz-5.6.4-h4754444_1
++https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/win-64::zlib-1.2.13-h8cc25b3_1
+# update specs: ['python=3.11']
