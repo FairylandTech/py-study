@@ -1,31 +1,51 @@
 import json
 
-from practice.service import UserInfoService
-from django.shortcuts import HttpResponse,render
 
+from practice.service import UserInfoServicesimple
+from django.shortcuts import HttpResponse,render
+from django.http.response import HttpResponseBase, JsonResponse
+
+def check_page(page:int):
+    if page <= 0:
+        raise ValueError('page 必须大于0')
+    return int(page)
+
+def check_size(size:int):
+    if size <= 0:
+        raise ValueError('size 必须大于0')
+    return int(size)
 
 # Create your views here.
-class UserInfoView():
+class UserInfoViewSimple():
     def get(self,request):
-        return render(request,'UserInformation.html')
+        query_parms = request.GET
+
+        #获取查询参数
+        name = query_parms.get('name')
+        account = query_parms.get('account')
+        page = query_parms.get('page')
+        size = query_parms.get('size')
+
+        #数据校验
+        check_data = {
+            'name':name,
+            'account':account,
+            'page':check_page(page),
+            'size':check_size(size)
+        }
+
+        result = UserInfoServicesimple.query_info(check_data)
+        data = {
+            'code':'200',
+            'meg':'ok',
+            'data':result
+        }
+        return JsonResponse(data)
 
     def post(self,request):
-        name = request.GET.get('name')
-        account = request.GET.get('account')
-        page = request.GET.get('page')
-        size = request.GET.get('size')
-
-
-        
-        user_info = UserInfoService.query_info()
-
-        return user_info
-
-
-
-
-
+        pass
 
 
 def test(request):
+
     return HttpResponse(json.dumps({"msg": "ok"}))
