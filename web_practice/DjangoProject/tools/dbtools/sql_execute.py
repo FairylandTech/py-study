@@ -41,10 +41,10 @@ class SqlTools:
 
     def __init__(self):
         self.__host = 'localhost'
-        self.__port = '3306'
+        self.__port = 3306
         self.__user = 'root'
         self.__password = '15802995747.m.'
-        self.__db_name  = 'user_info'
+        self.__db_name  = 'base_info'
         self.__charset = 'utf8'
 
     @property
@@ -81,17 +81,17 @@ class SqlTools:
             charset=self.__charset
             
         )
-        self.cursor = self.db.cursor()
+        self.cursor = self.db.cursor(DictCursor)
 
     def close(self):
         self.cursor.close()
         self.db.close()
 
-    def execute(self,sql):
+    def execute(self,sql,parms):
         count = 0
         try:
             self.get_conn()
-            count = self.cursor.execute(sql)
+            count = self.cursor.execute(sql,parms)
             self.db.commit()
             self.cursor.close()
         except Exception as e:
@@ -102,12 +102,15 @@ class SqlTools:
     def execute_many(self,sql,data):
         pass
 
-    def query(self,sql):
+    def query(self,sql,parms):
         res = None
         try:
-            self.get_conn
-            self.cursor.execute(sql)
-            res = self.cursor.fetchone()
+            self.get_conn()
+            self.cursor.execute(sql,parms)
+            res = self.cursor.fetchall()
+
+
+            # title = [title[0] for title in cursor.description]
             self.close()
         except Exception as e:
             print('查询失败' + str(e))
