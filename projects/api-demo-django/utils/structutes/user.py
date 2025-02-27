@@ -16,7 +16,7 @@ from fairylandfuture.enums.chrono import DateTimeEnum
 
 @dataclass(frozen=True)
 class UserinfoStruct(BaseStructure):
-    id: str
+    # id: str
     name: str
     account: str
     department: str

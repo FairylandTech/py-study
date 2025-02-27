@@ -1,0 +1,29 @@
+"""
+sql = select * from where id = %s and flag = %s;
+
+select * from where id = 1 and flag = true;
+
+excute(sql, [1, true])
+
+
+sql = select * from where id = %(id)s and flag = %(id)s
+      select * from where id = 1 and flag = 1
+
+excute(sql, {"id": 1, "flag": 1})
+
+query_dict = {
+    "field3": 3,
+    "field1": 1,
+    "field2": 2
+}
+
+query_dict.keys()
+field1, field3, field2
+
+sql = insert into table (field1, field3, field2) values (%(field1)s, %(field3)s, %(field2)s)
+
+excute(sql, query_dict)
+
+insert into table(field1, field2, field3) values (value1, value2, value3);
+
+"""

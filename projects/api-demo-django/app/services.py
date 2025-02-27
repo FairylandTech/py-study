@@ -6,8 +6,10 @@
 @organization: https://github.com/FairylandFuture
 @datetime: 2025-02-19 21:51:21 UTC+08:00
 """
+import copy
+from typing import Dict, Any
 
-from typing import Dict
+from datetime import datetime
 
 from app.models import UserInfoModel
 
@@ -27,7 +29,7 @@ class UserInfoService(object):
         journal.info(f"用户服务::查询::构建响应体")
         data = [
             UserinfoStruct(
-                row.get("id"),
+                # row.get("id"),
                 row.get("name"),
                 row.get("account"),
                 row.get("department"),
@@ -39,3 +41,19 @@ class UserInfoService(object):
         ]
 
         return data
+
+    @classmethod
+    def add(cls, params: Dict[str, Any]):
+        data = copy.deepcopy(params)
+        if not "existed" in data.keys():
+            data.update(existed=True)
+        if not "created_at" in data.keys():
+            data.update(created_at=datetime.now())
+        if not "updated_at" in data.keys():
+            data.update(updated_at=datetime.now())
+
+        return cls.__model.create(data)
+
+    @classmethod
+    def delete(cls, _id):
+        return cls.__model.delete({"id": _id})

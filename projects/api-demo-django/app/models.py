@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-from typing import Dict
+from typing import Dict, Any
 
 from fairylandfuture.structures.builder.db import StructureMySQLExecute
 from utils.db import dbtools
@@ -37,3 +37,22 @@ class UserInfoModel(object):
         result = dbtools.select(StructureMySQLExecute(sql, sql_params))
 
         return result if result and result is not True else tuple()
+
+    def create(self, params: Dict[str, Any]):
+        fields = ", ".join(params.keys())
+        values = ", ".join([f"%({field})s" for field in params.keys()])
+        sql = f"insert into example_user_info_1 ({fields}) value ({values})"
+
+        journal.debug(f"用户模型::插入::SQL:{sql}")
+
+        return dbtools.insert(StructureMySQLExecute(sql, params))
+
+    def delete(self, params):
+        sql = "delete from example_user_info_1 where id = %(id)s;"
+
+        journal.debug(f"用户模型::删除::SQL{sql}")
+
+        return dbtools.delete(StructureMySQLExecute(sql, params))
+
+    def update(self):
+        sql = "update example_user_info_1 set name = %s where id = %s;"
